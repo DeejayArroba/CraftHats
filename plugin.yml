@@ -1,0 +1,5 @@
+name: CraftHats
+main: me.crafthats.Main
+version: 1.0
+description: Hat shop plugin for bukkit
+depend: Vault
