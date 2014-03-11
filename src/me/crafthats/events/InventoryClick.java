@@ -5,7 +5,7 @@ import me.crafthats.hats.Hat;
 import me.crafthats.hats.HatManager;
 import me.crafthats.hats.HatPlayer;
 import me.crafthats.hats.HatPlayerManager;
-
+import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -14,10 +14,12 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryType.SlotType;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.plugin.Plugin;
 
 public class InventoryClick implements Listener {
 
 	MessageManager msg = MessageManager.getInstance();
+	Plugin plugin = Bukkit.getPluginManager().getPlugin("CraftHats");
 
 	@EventHandler
 	public void onClick(InventoryClickEvent e) {
@@ -40,21 +42,23 @@ public class InventoryClick implements Listener {
 			return;
 
 		// If the inventories have the same title
-		if (inventory.getTitle() == hatPlayer.getInventory().getTitle()) {
+		if (inventory.getTitle().equals(hatPlayer.getInventory().getTitle())) {
 
 			e.setCancelled(true);
 
-			Hat hat = HatManager.getHatFromMaterial(itemStack.getType());
+			Hat hat = HatManager.getHat(itemStack);
 
 			// If the player owns the hat
-			
-			if (!player.hasPermission("crafthats.hat.*")) {
-				if (!player.hasPermission("crafthats.hat." + hat.getName())) {
-					msg.bad(player, "You don't have permission for this hat!");
-					player.closeInventory();
-					return;
-				}
-			}
+
+			if (plugin.getConfig().getBoolean("per-hat-permissions"))
+				if (!player.isOp())
+					if (!player.hasPermission("crafthats.hat.*"))
+						if (hatPlayer.getPlayer().hasPermission("crafthats.hat." + hat.getName()))
+							if (!player.hasPermission("crafthats.hat." + hat.getName())) {
+								msg.bad(player, "You don't have permission for this hat!");
+								player.closeInventory();
+								return;
+							}
 
 			if (hatPlayer.hasHat(hat)) {
 				hatPlayer.use(hat);
@@ -67,7 +71,7 @@ public class InventoryClick implements Listener {
 		}
 
 		if (e.getSlotType() == SlotType.ARMOR) {
-			Hat hat = HatManager.getHatFromDisplayName(itemStack);
+			Hat hat = HatManager.getHat(itemStack);
 			if (hat != null) {
 				if (hatPlayer.isWearingHat()) {
 					e.setCancelled(true);

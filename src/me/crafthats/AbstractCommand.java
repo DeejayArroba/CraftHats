@@ -1,8 +1,5 @@
 package me.crafthats;
 
-import java.lang.reflect.Field;
-import java.util.List;
-
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -10,6 +7,9 @@ import org.bukkit.command.CommandMap;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.permissions.Permission;
+
+import java.lang.reflect.Field;
+import java.util.List;
 
 @SuppressWarnings("unused")
 public abstract class AbstractCommand implements CommandExecutor {
@@ -78,7 +78,7 @@ public abstract class AbstractCommand implements CommandExecutor {
                 cmap = (CommandMap) f.get(Bukkit.getServer());
                 return getCommandMap();
             } catch (Exception e) { e.printStackTrace(); }
-        } else if (cmap != null) { return cmap; }
+        } else { return cmap; }
         return getCommandMap();
     }
     

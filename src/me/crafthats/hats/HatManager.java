@@ -1,8 +1,6 @@
 package me.crafthats.hats;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import me.crafthats.config.ConfigManager;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.configuration.ConfigurationSection;
@@ -10,14 +8,17 @@ import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class HatManager {
 
 	private static List<Hat> loadedHats = new ArrayList<Hat>();
 	private static JavaPlugin plugin = (JavaPlugin) Bukkit.getPluginManager().getPlugin("CraftHats");
 
 	public static void loadHats() {
-		plugin.reloadConfig();
-		FileConfiguration config = plugin.getConfig();
+		ConfigManager.reload(plugin, "hats.yml");
+		FileConfiguration config = ConfigManager.get("hats.yml");
 		ConfigurationSection configurationSection = config.getConfigurationSection("hats");
 		loadedHats.clear();
 		for (String name : configurationSection.getKeys(false)) {
@@ -36,29 +37,13 @@ public class HatManager {
 		}
 	}
 
-	public static Hat getHat(String hatName) {
-		for (Hat hat : loadedHats) {
-			if (hat.getName() == hatName) {
-				return hat;
-			}
-		}
-		return null;
-	}
+	public static Hat getHat(ItemStack itemStack) {
+		Material hatMaterial = itemStack.getType();
+		String hatDisplayName = itemStack.getItemMeta().getDisplayName();
 
-	public static Hat getHatFromDisplayName(ItemStack itemStack) {
 		for (Hat hat : loadedHats) {
-			if (itemStack.getItemMeta().getDisplayName().equals(hat.getItemStack(true).getItemMeta().getDisplayName())) {
-				return hat;
-			}
-		}
-		return null;
-	}
-
-	public static Hat getHatFromMaterial(Material hatMaterial) {
-		for (Hat hat : loadedHats) {
-			if (hat.getMaterial() == hatMaterial) {
-				return hat;
-			}
+			if (hat.getMaterial() == hatMaterial)
+				if (hat.getDisplayName().equals(hatDisplayName)) return hat;
 		}
 		return null;
 	}

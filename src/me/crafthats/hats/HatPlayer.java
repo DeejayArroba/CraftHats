@@ -1,12 +1,9 @@
 package me.crafthats.hats;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import me.crafthats.Main;
 import me.crafthats.MessageManager;
+import me.crafthats.config.ConfigManager;
 import net.milkbowl.vault.economy.Economy;
-
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -15,6 +12,9 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.plugin.java.JavaPlugin;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class HatPlayer {
 
@@ -27,17 +27,13 @@ public class HatPlayer {
 	private boolean wearingHat = false;
 
 	public HatPlayer(Player player) {
-		FileConfiguration config = plugin.getConfig();
+		ConfigManager.reload(plugin, "players.yml");
+		FileConfiguration config = ConfigManager.get("players.yml");
 		this.player = player;
-
-		plugin.saveConfig();
-		plugin.reloadConfig();
 
 		String path = "players." + player.getName();
 
-		List<String> ownedHatsFromConfig = config.getStringList(path);
-
-		ownedHats = ownedHatsFromConfig;
+		ownedHats = config.getStringList(path);
 
 		if (ownedHats.size() == 0) {
 			msg.good(player, "Zero hats loaded :(");
@@ -57,9 +53,7 @@ public class HatPlayer {
 	}
 
 	public boolean hasHat(Hat hat) {
-		if (ownedHats.contains(hat.getName()))
-			return true;
-		return false;
+		return ownedHats.contains(hat.getName());
 	}
 
 	public Inventory getInventory() {
@@ -78,8 +72,7 @@ public class HatPlayer {
 		Inventory inventory = Bukkit.createInventory(player, slotCount, "Hats");
 
 		for (Hat hat : HatManager.getHats()) {
-			boolean ownsHat = hasHat(hat);
-			ItemStack hatItemStack = hat.getItemStack(ownsHat);
+			ItemStack hatItemStack = hat.getItemStack(this);
 			inventory.addItem(hatItemStack);
 		}
 
@@ -98,7 +91,7 @@ public class HatPlayer {
 			wearingHat = true;
 			setCurrentHat(hat);
 
-			ItemStack itemStack = hat.getItemStack(true);
+			ItemStack itemStack = hat.getItemStack(this);
 			ItemMeta itemMeta = itemStack.getItemMeta();
 			itemMeta.setLore(null);
 			itemStack.setItemMeta(itemMeta);
@@ -113,7 +106,8 @@ public class HatPlayer {
 	}
 
 	public void buy(Hat hat) {
-		FileConfiguration config = plugin.getConfig();
+		ConfigManager.reload(plugin, "players.yml");
+		FileConfiguration config = ConfigManager.get("players.yml");
 		if (!hasHat(hat)) {
 
 			Economy economy = Main.getEconomy();
@@ -130,11 +124,10 @@ public class HatPlayer {
 				list.add(hat.getName());
 				config.set(path, list);
 
-				plugin.saveConfig();
-				plugin.reloadConfig();
+				ConfigManager.save(plugin, "players.yml");
 
 				player.closeInventory();
-				
+
 				player.openInventory(getInventory());
 
 				msg.good(player, "You bought a new hat!");
@@ -157,10 +150,6 @@ public class HatPlayer {
 
 	}
 
-	public Hat getCurrentHat() {
-		return currentHat;
-	}
-
 	public void setCurrentHat(Hat hat) {
 		currentHat = hat;
 	}
@@ -177,8 +166,8 @@ public class HatPlayer {
 		return wearingHat;
 	}
 
-	public void setWearingIsHat(boolean b) {
-		wearingHat = b;
+	public Hat getCurrentHat() {
+		return currentHat;
 	}
 
 }

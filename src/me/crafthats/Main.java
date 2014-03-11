@@ -1,6 +1,7 @@
 package me.crafthats;
 
 import me.crafthats.commands.HatCommand;
+import me.crafthats.config.ConfigManager;
 import me.crafthats.events.InventoryClick;
 import me.crafthats.events.PlayerJoin;
 import me.crafthats.events.PlayerLeave;
@@ -22,14 +23,16 @@ public class Main extends JavaPlugin {
 
 	@Override
 	public void onEnable() {
+		ConfigManager.load(this, "hats.yml");
+		ConfigManager.load(this, "players.yml");
 		saveDefaultConfig();
-		
-		if(getConfig().getBoolean("update-check")) {
+
+		if (getConfig().getBoolean("update-check")) {
 			if (getConfig().getBoolean("auto-update")) {
 				@SuppressWarnings("unused")
-				Updater updater = new Updater(this, 70538, this.getFile(), Updater.UpdateType.DEFAULT, true);
+				Updater updater = new Updater(this, 75524, this.getFile(), Updater.UpdateType.DEFAULT, true);
 			} else {
-				Updater updater = new Updater(this, 70538, this.getFile(), Updater.UpdateType.NO_DOWNLOAD, false);
+				Updater updater = new Updater(this, 75524, this.getFile(), Updater.UpdateType.NO_DOWNLOAD, false);
 				Updater.UpdateResult result = updater.getResult();
 				if (result == Updater.UpdateResult.UPDATE_AVAILABLE) {
 					getLogger().info("An update for " + this.getName() + " is available");
@@ -63,7 +66,7 @@ public class Main extends JavaPlugin {
 			getServer().getPluginManager().disablePlugin(this);
 			return;
 		}
-		
+
 		HatManager.loadHats();
 		HatPlayerManager.createAllHatPlayers();
 	}
@@ -84,13 +87,13 @@ public class Main extends JavaPlugin {
 
 		return (economy != null);
 	}
-	
+
 	public static Economy getEconomy() {
 		return economy;
 	}
-	
+
 	public void updateNotice(Player p) {
-		if(getConfig().getBoolean("update-check")) {
+		if (getConfig().getBoolean("update-check")) {
 			if (!getConfig().getBoolean("auto-update")) {
 				if (p.hasPermission("crafthats.updater") || p.isOp()) {
 					Updater updater = new Updater(this, 75524, this.getFile(), Updater.UpdateType.NO_DOWNLOAD, false);

@@ -1,0 +1,16 @@
+hats:
+   # The hat name
+   pumpkin:
+      # The hat display name
+      display-name: Pumpkin hat
+      # The hat price
+      price: 120
+      # The type of item that will appear in the menu
+      material: PUMPKIN
+      # The data value for the item that will appear in the menu
+      data-value: 0
+   redstone_block:
+      display-name: Redstone block hat
+      price: 100
+      material: REDSTONE_BLOCK
+      dataValue: 0
