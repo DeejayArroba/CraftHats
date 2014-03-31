@@ -6,7 +6,7 @@ import org.bukkit.Material;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.plugin.Plugin;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,7 +14,7 @@ import java.util.List;
 public class HatManager {
 
 	private static List<Hat> loadedHats = new ArrayList<Hat>();
-	private static JavaPlugin plugin = (JavaPlugin) Bukkit.getPluginManager().getPlugin("CraftHats");
+	private static Plugin plugin = Bukkit.getPluginManager().getPlugin("CraftHats");
 
 	public static void loadHats() {
 		ConfigManager.reload(plugin, "hats.yml");

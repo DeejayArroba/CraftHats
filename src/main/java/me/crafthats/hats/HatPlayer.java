@@ -35,13 +35,6 @@ public class HatPlayer {
 
 		ownedHats = config.getStringList(path);
 
-		if (ownedHats.size() == 0) {
-			msg.good(player, "Zero hats loaded :(");
-		} else {
-			msg.good(player, "Some hats were loaded!");
-			msg.good(player, ownedHats.toString());
-		}
-
 	}
 
 	public List<String> getOwnedHats() {

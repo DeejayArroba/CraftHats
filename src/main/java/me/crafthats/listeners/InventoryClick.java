@@ -1,4 +1,4 @@
-package me.crafthats.events;
+package me.crafthats.listeners;
 
 import me.crafthats.MessageManager;
 import me.crafthats.hats.Hat;

@@ -12,3 +12,5 @@ auto-update: true
 # The permission for the hat will be: 'crafthats.hat.HAT_NAME'
 # The permission for all the hats is: 'crafthats.hat.*'
 per-hat-permissions: true
+
+metrics: true

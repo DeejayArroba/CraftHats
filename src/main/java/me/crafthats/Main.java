@@ -2,9 +2,10 @@ package me.crafthats;
 
 import me.crafthats.commands.HatCommand;
 import me.crafthats.config.ConfigManager;
-import me.crafthats.events.InventoryClick;
-import me.crafthats.events.PlayerJoin;
-import me.crafthats.events.PlayerLeave;
+import me.crafthats.listeners.InventoryClick;
+import me.crafthats.listeners.PlayerDamage;
+import me.crafthats.listeners.PlayerJoin;
+import me.crafthats.listeners.PlayerLeave;
 import me.crafthats.hats.HatManager;
 import me.crafthats.hats.HatPlayerManager;
 import net.milkbowl.vault.economy.Economy;
@@ -13,6 +14,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.logging.Logger;
 
@@ -40,10 +42,7 @@ public class Main extends JavaPlugin {
 			}
 		}
 
-		/*
-		Commented this because the MCStats website wasn't working at the time.
-
-		if(getConfig().getBoolean("metrics")) {
+		if (getConfig().getBoolean("metrics")) {
 			try {
 				Metrics metrics = new Metrics(this);
 				metrics.start();
@@ -52,11 +51,9 @@ public class Main extends JavaPlugin {
 			}
 		}
 
-		*/
-
-
 		Bukkit.getPluginManager().registerEvents(new InventoryClick(), this);
 		Bukkit.getPluginManager().registerEvents(new PlayerJoin(), this);
+		Bukkit.getPluginManager().registerEvents(new PlayerDamage(), this);
 		Bukkit.getPluginManager().registerEvents(new PlayerLeave(), this);
 		new HatCommand("crafthats", "/<command>", "Main CraftHats command.", this, Arrays.asList("hats", "hat"));
 
@@ -76,7 +73,6 @@ public class Main extends JavaPlugin {
 		HatPlayerManager.resetAllHats();
 		HatPlayerManager.removeAllHatPlayers();
 	}
-
 
 	private boolean setupEconomy() {
 		RegisteredServiceProvider<Economy> economyProvider = getServer().getServicesManager().getRegistration(
