@@ -43,22 +43,18 @@ public class InventoryClick implements Listener {
 
 		// If the inventories have the same title
 		if (inventory.getTitle().equals(hatPlayer.getInventory().getTitle())) {
-
 			e.setCancelled(true);
 
 			Hat hat = HatManager.getHat(itemStack);
 
-			// If the player owns the hat
-
 			if (plugin.getConfig().getBoolean("per-hat-permissions"))
-				if (!player.isOp())
-					if (!player.hasPermission("crafthats.hat.*"))
-						if (hatPlayer.getPlayer().hasPermission("crafthats.hat." + hat.getName()))
-							if (!player.hasPermission("crafthats.hat." + hat.getName())) {
-								msg.bad(player, "You don't have permission for this hat!");
-								player.closeInventory();
-								return;
-							}
+				if (!player.hasPermission("crafthats.hat.*") && !player.isOp())
+					if (hatPlayer.getPlayer().hasPermission("crafthats.hat." + hat.getName()))
+						if (!player.hasPermission("crafthats.hat." + hat.getName())) {
+							msg.bad(player, "You don't have permission for this hat!");
+							player.closeInventory();
+							return;
+						}
 
 			if (hatPlayer.hasHat(hat)) {
 				hatPlayer.use(hat);
@@ -67,7 +63,6 @@ public class InventoryClick implements Listener {
 			}
 
 			return;
-
 		}
 
 		if (e.getSlotType() == SlotType.ARMOR) {
@@ -75,7 +70,6 @@ public class InventoryClick implements Listener {
 			if (hat != null) {
 				if (hatPlayer.isWearingHat()) {
 					e.setCancelled(true);
-					// player.closeInventory();
 					msg.bad(player, "Type '/crafthats reset' to reset your hat!");
 				}
 			}
