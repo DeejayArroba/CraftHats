@@ -1,0 +1,56 @@
+{{https://raw.githubusercontent.com/DeejayArroba/CraftHats/master/src/main/resources/CraftHats%20banner.png|CraftHats Logo}}\\
+
+**CraftHats is a hat shop plugin, similar to the one on the Hypixel server. It is fully customizable: you can create new hats in the config file, customize the price, material and display name. Each hat also has its own permission node. Learn more about the config file [[http://dev.bukkit.org/bukkit-plugins/crafthats/pages/config-documentation/|here]].**
+
+=== Features ===
+* You can create your own hats in the config file
+* Custom hat prices
+* Free hats (set the price to 0)
+* Per-hat permissions
+* Ability to reset your hat without losing previous helmet
+* Auto updater
+* In-game GUI for hat selection
+
+=== Commands ===
+|=Command|=Permission|=Description|
+|/crafthats|crafthats.use|Command used to open the in-game hat GUI.|
+|/crafthats reset|crafthats.use|Command used to restore the helmet you were wearing before using a hat.|
+|/crafthats reload|crafthats.use|Command used to reload the config.|
+
+//All these commands have the aliases: **/hat**, **/hats**//
+
+=== Permissioms ===
+|=Permission|=Description|
+|crafthats.hat.HAT_NAME|This permission gives access to a hat with the name specified (You still have to buy the hat).|
+|crafthats.hat.*|This permission gives access to all hats (You still have to buy the hat).|
+|crafthats.use|This permission gives access to the command **/crafthats** and **/crafthats reset**.|
+|crafthats.admin|This permission gives access to the command **/crafthats reload**.|
+
+=== Development builds ===
+These builds have not been approved by the Bukkit Dev staff. Use them at your own risk. 
+You can download the latest dev build [[https://drone.io/github.com/DeejayArroba/CraftHats/files|here]].\\
+<<center>>{{https://drone.io/github.com/DeejayArroba/CraftHats/status.png|Build status}}<</center>>
+
+=== Auto-Updater ===
+Updates are downloaded automatically so you always have the latest features of CraftHats. You can disable this in the config.yml.
+
+=== Metrics ===
+This plugin utilizes Hidendra's plugin metrics system, which means that the following information is collected and sent to mcstats.org:
+* A unique identifier
+* The server's version of Java
+* Whether the server is in offline or online mode
+* The plugin's version
+* The server's version
+* The OS version/name and architecture
+* The core count for the CPU
+* The number of players online
+* The Metrics version
+\\
+{{http://api.mcstats.org/signature/CraftHats.png|Metrics}}
+\\
+
+=== My other plugins ===
+* [[http://dev.bukkit.org/bukkit-plugins/craftheads/|CraftHeads]] - A plugin with a collection of decorative player heads.
+
+//If you like the plugin, consider donating! I'm currently accepting bitcoin.\\
+Address: 14WvgbGeg8tgBNTDCjirD3uzvbk8xBguGu//
