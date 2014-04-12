@@ -23,6 +23,10 @@ public class HatManager {
 		loadedHats.clear();
 		for (String name : configurationSection.getKeys(false)) {
 			if (loadedHats.size() < 54) {
+				if(config.get("hats." + name + ".dataValue") != null) {
+					config.set("hats." + name + ".data-value", config.get("hats." + name + ".dataValue"));
+					config.set("hats." + name + ".dataValue", null);
+				}
 				double price = config.getDouble("hats." + name + ".price");
 				Material material = Material.getMaterial(config.getString("hats." + name + ".material"));
 				String displayName = config.getString("hats." + name + ".display-name");
@@ -34,6 +38,7 @@ public class HatManager {
 				}
 			}
 		}
+		ConfigManager.save(plugin, "hats.yml");
 	}
 
 	public static Hat getHat(ItemStack itemStack) {
