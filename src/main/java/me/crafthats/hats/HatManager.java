@@ -32,7 +32,6 @@ public class HatManager {
 					Hat hat = new Hat(name, displayName, price, material, dataValue);
 					loadedHats.add(hat);
 				}
-
 			}
 		}
 	}

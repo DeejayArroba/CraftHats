@@ -22,6 +22,7 @@ public class Main extends JavaPlugin {
 
 	public static Economy economy = null;
 	MessageManager msg = MessageManager.getInstance();
+    public static boolean devBuild = true;
 
 	@Override
 	public void onEnable() {
@@ -29,7 +30,7 @@ public class Main extends JavaPlugin {
 		ConfigManager.load(this, "players.yml");
 		saveDefaultConfig();
 
-		if (getConfig().getBoolean("update-check")) {
+		if (getConfig().getBoolean("update-check") && !devBuild) {
 			if (getConfig().getBoolean("auto-update")) {
 				@SuppressWarnings("unused")
 				Updater updater = new Updater(this, 75524, this.getFile(), Updater.UpdateType.DEFAULT, true);
@@ -59,7 +60,7 @@ public class Main extends JavaPlugin {
 
 		if (!setupEconomy()) {
 			Logger.getLogger("Minecraft").severe(
-					String.format("[%s] - Disabled due to no Vault dependency found!", getDescription().getName()));
+					String.format("[%s] - Disabled due to no Economy plugin found!", getDescription().getName()));
 			getServer().getPluginManager().disablePlugin(this);
 			return;
 		}

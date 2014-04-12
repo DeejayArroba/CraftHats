@@ -6,6 +6,7 @@ import me.crafthats.config.ConfigManager;
 import net.milkbowl.vault.economy.Economy;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
+import org.bukkit.Sound;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
@@ -94,6 +95,7 @@ public class HatPlayer {
 			player.closeInventory();
 
 			msg.good(player, "Enjoy your new hat!");
+			player.playSound(player.getLocation(), Sound.ITEM_PICKUP, 1f, 1f);
 		}
 
 	}
@@ -124,6 +126,7 @@ public class HatPlayer {
 				player.openInventory(getInventory());
 
 				msg.good(player, "You bought a new hat!");
+				player.playSound(player.getLocation(), Sound.ORB_PICKUP, 1f, 1f);
 			} else
 				msg.bad(player, "You can't afford that hat!");
 

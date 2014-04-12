@@ -30,9 +30,10 @@ public class Hat {
 	}
 
 	public ItemStack getItemStack(HatPlayer hatPlayer) {
-		ItemStack itemStack = new ItemStack(material, 1, dataValue);
+		ItemStack itemStack = new ItemStack(material, 1);
 		ItemMeta itemMeta = itemStack.getItemMeta();
 		itemMeta.setDisplayName(getDisplayName());
+		itemStack.setDurability(dataValue);
 		List<String> lore = new ArrayList<String>();
 		boolean ownsHat = hatPlayer.getOwnedHats().contains(this.getName());
 
