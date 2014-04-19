@@ -1,12 +1,16 @@
 package me.crafthats;
 
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.plugin.Plugin;
 
 public class MessageManager {
 
-	private String prefix = ChatColor.GRAY + "[" + ChatColor.DARK_AQUA
-			+ "CraftHats" + ChatColor.GRAY + "] " + ChatColor.RESET;
+	private Plugin plugin = Bukkit.getPluginManager().getPlugin("CraftHats");
+
+	private String prefix = plugin.getConfig().getString("chat-prefix").replace('&', '§') + " " + ChatColor.RESET;
+
 	private static MessageManager instance = new MessageManager();
 
 	public static MessageManager getInstance() {

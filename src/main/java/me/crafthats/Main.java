@@ -2,10 +2,7 @@ package me.crafthats;
 
 import me.crafthats.commands.HatCommand;
 import me.crafthats.config.ConfigManager;
-import me.crafthats.listeners.InventoryClick;
-import me.crafthats.listeners.PlayerDamage;
-import me.crafthats.listeners.PlayerJoin;
-import me.crafthats.listeners.PlayerLeave;
+import me.crafthats.listeners.*;
 import me.crafthats.hats.HatManager;
 import me.crafthats.hats.HatPlayerManager;
 import net.milkbowl.vault.economy.Economy;
@@ -21,7 +18,7 @@ import java.util.logging.Logger;
 public class Main extends JavaPlugin {
 
 	public static Economy economy = null;
-	MessageManager msg = MessageManager.getInstance();
+	MessageManager msg;
     public static boolean devBuild = true;
 
 	@Override
@@ -56,6 +53,7 @@ public class Main extends JavaPlugin {
 		Bukkit.getPluginManager().registerEvents(new PlayerJoin(), this);
 		Bukkit.getPluginManager().registerEvents(new PlayerDamage(), this);
 		Bukkit.getPluginManager().registerEvents(new PlayerLeave(), this);
+		Bukkit.getPluginManager().registerEvents(new PlayerInteract(), this);
 		new HatCommand("crafthats", "/<command>", "Main CraftHats command.", this, Arrays.asList("hats", "hat"));
 
 		if (!setupEconomy()) {
@@ -67,6 +65,7 @@ public class Main extends JavaPlugin {
 
 		HatManager.loadHats();
 		HatPlayerManager.createAllHatPlayers();
+		msg = MessageManager.getInstance();
 	}
 
 	@Override

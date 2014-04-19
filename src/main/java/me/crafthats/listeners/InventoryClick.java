@@ -29,29 +29,28 @@ public class InventoryClick implements Listener {
 
 		HatPlayer hatPlayer = HatPlayerManager.getHatPlayer(player);
 
-		// If the hatPlayer is null, stop everything.
 		if (hatPlayer == null)
 			return;
 
-		// If the ItemStack is null, stop everything.
 		if (itemStack == null)
 			return;
 
-		// If the ItemStack is air, stop everything.
 		if (itemStack.getType() == Material.AIR)
 			return;
 
-		// If the inventories have the same title
 		if (inventory.getTitle().equals(hatPlayer.getInventory().getTitle())) {
 			e.setCancelled(true);
 
 			Hat hat = HatManager.getHat(itemStack);
 
+			if (hat == null)
+				return;
+
 			if (plugin.getConfig().getBoolean("per-hat-permissions"))
 				if (!player.hasPermission("crafthats.hat.*") && !player.isOp())
 					if (hatPlayer.getPlayer().hasPermission("crafthats.hat." + hat.getName()))
 						if (!player.hasPermission("crafthats.hat." + hat.getName())) {
-							msg.bad(player, "You don't have permission for this hat!");
+							msg.bad(player, plugin.getConfig().getString("no-permission-message"));
 							player.closeInventory();
 							return;
 						}
@@ -61,7 +60,6 @@ public class InventoryClick implements Listener {
 			} else {
 				hatPlayer.buy(hat);
 			}
-
 			return;
 		}
 
@@ -70,9 +68,18 @@ public class InventoryClick implements Listener {
 			if (hat != null) {
 				if (hatPlayer.isWearingHat()) {
 					e.setCancelled(true);
-					msg.bad(player, "Type '/crafthats reset' to reset your hat!");
+					msg.bad(player, plugin.getConfig().getString("reset-hat-message"));
 				}
 			}
 		}
+
+		if (e.getSlotType() == SlotType.QUICKBAR) {
+			if (!plugin.getConfig().getBoolean("can-move-hat-item")) {
+				if (e.getSlot() == plugin.getConfig().getInt("hat-item-slot") - 1) {
+					e.setCancelled(true);
+				}
+			}
+		}
+
 	}
 }

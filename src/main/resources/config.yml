@@ -14,3 +14,35 @@ auto-update: true
 per-hat-permissions: true
 
 metrics: true
+
+# An item that players use to open the hat menu.
+hat-item: DIAMOND_HELMET
+
+# The hot-bar slot that the hat item will appear [1-9].
+hat-item-slot: 9
+
+hat-item-data-value: 0
+
+hat-item-name: "Hat selector"
+
+# If you want players to be able to move the hat item in their inventory, set this to true
+can-move-hat-item: false
+
+# If you want to give players the hat item when they join the server, set this to true.
+give-hat-item: true
+
+chat-prefix: "&8[&3CraftHats&8]"
+
+hat-menu-title: "Hats menu"
+
+no-permission-message: "You don't have permission for this hat!"
+
+reset-hat-message: "Type '/hats reset' to reset your hat!"
+
+buy-hat-message: "You bought a new hat!"
+
+wear-hat-message: "Enjoy your new hat!"
+
+cant-afford-hat-message: "You can't afford that hat!"
+
+already-own-hat-message: "You already own that hat!"

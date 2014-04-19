@@ -5,6 +5,7 @@ import me.crafthats.MessageManager;
 import me.crafthats.config.ConfigManager;
 import net.milkbowl.vault.economy.Economy;
 import org.bukkit.Bukkit;
+import org.bukkit.Effect;
 import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -63,7 +64,7 @@ public class HatPlayer {
 			slotCount = itemCount + (9 - rest);
 		}
 
-		Inventory inventory = Bukkit.createInventory(player, slotCount, "Hats");
+		Inventory inventory = Bukkit.createInventory(player, slotCount, plugin.getConfig().getString("hat-menu-title"));
 
 		for (Hat hat : HatManager.getHats()) {
 			ItemStack hatItemStack = hat.getItemStack(this);
@@ -94,8 +95,9 @@ public class HatPlayer {
 
 			player.closeInventory();
 
-			msg.good(player, "Enjoy your new hat!");
+			msg.good(player, plugin.getConfig().getString("wear-hat-message"));
 			player.playSound(player.getLocation(), Sound.ITEM_PICKUP, 1f, 1f);
+			player.getLocation().getWorld().playEffect(player.getLocation(), Effect.MOBSPAWNER_FLAMES, 5);
 		}
 
 	}
@@ -125,13 +127,14 @@ public class HatPlayer {
 
 				player.openInventory(getInventory());
 
-				msg.good(player, "You bought a new hat!");
+				msg.good(player, plugin.getConfig().getString("buy-hat-message"));
 				player.playSound(player.getLocation(), Sound.ORB_PICKUP, 1f, 1f);
+				player.getLocation().getWorld().playEffect(player.getLocation(), Effect.ENDER_SIGNAL, 5);
 			} else
-				msg.bad(player, "You can't afford that hat!");
+				msg.bad(player, plugin.getConfig().getString("cant-afford-hat-message"));
 
 		} else
-			msg.info(player, "You already own that hat!");
+			msg.info(player, plugin.getConfig().getString("already-own-hat-message"));
 
 	}
 
