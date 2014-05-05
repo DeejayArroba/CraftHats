@@ -16,7 +16,7 @@ public class PlayerInteract implements Listener {
 
 	@EventHandler
 	public void onInteract(PlayerInteractEvent e) {
-		Player player = e.getPlayer();
+		final Player player = e.getPlayer();
 		if (player.getItemInHand().getType() == Material.getMaterial(plugin.getConfig().getString("hat-item"))) {
 			e.setCancelled(true);
 			Inventory inventory = HatPlayerManager.getHatPlayer(player).getInventory();

@@ -23,10 +23,14 @@ hat-item-slot: 9
 
 hat-item-data-value: 0
 
-hat-item-name: "Hat selector"
+hat-item-name: "&cHat selector"
 
 # If you want players to be able to move the hat item in their inventory, set this to true
+# The players will still be able to move the item if they are on creative mode.
 can-move-hat-item: false
+
+# If you want players to be able to drop the hat item, set this to true
+can-drop-hat-item: false
 
 # If you want to give players the hat item when they join the server, set this to true.
 give-hat-item: true
@@ -46,3 +50,5 @@ wear-hat-message: "Enjoy your new hat!"
 cant-afford-hat-message: "You can't afford that hat!"
 
 already-own-hat-message: "You already own that hat!"
+
+damage-message: "You took damage, so your hat has been reset!"

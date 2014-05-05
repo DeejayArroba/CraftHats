@@ -1,11 +1,13 @@
 package me.crafthats.listeners;
 
-import me.crafthats.MessageManager;
+import me.crafthats.utils.ItemStackUtil;
+import me.crafthats.utils.MessageManager;
 import me.crafthats.hats.Hat;
 import me.crafthats.hats.HatManager;
 import me.crafthats.hats.HatPlayer;
 import me.crafthats.hats.HatPlayerManager;
 import org.bukkit.Bukkit;
+import org.bukkit.GameMode;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -41,30 +43,38 @@ public class InventoryClick implements Listener {
 		if (inventory.getTitle().equals(hatPlayer.getInventory().getTitle())) {
 			e.setCancelled(true);
 
-			Hat hat = HatManager.getHat(itemStack);
+			Hat hat = HatManager.getHat(itemStack, hatPlayer);
 
 			if (hat == null)
 				return;
 
-			if (plugin.getConfig().getBoolean("per-hat-permissions"))
-				if (!player.hasPermission("crafthats.hat.*") && !player.isOp())
-					if (hatPlayer.getPlayer().hasPermission("crafthats.hat." + hat.getName()))
+			if (plugin.getConfig().getBoolean("per-hat-permissions")) {
+				if (!player.hasPermission("crafthats.hat.*") && !player.isOp()) {
+					if (hatPlayer.getPlayer().hasPermission("crafthats.hat." + hat.getName())) {
 						if (!player.hasPermission("crafthats.hat." + hat.getName())) {
 							msg.bad(player, plugin.getConfig().getString("no-permission-message"));
 							player.closeInventory();
 							return;
 						}
+					}
+				}
+			}
 
 			if (hatPlayer.hasHat(hat)) {
 				hatPlayer.use(hat);
 			} else {
-				hatPlayer.buy(hat);
+				if (hat.getPrice() > 0) {
+					hatPlayer.buy(hat);
+				} else {
+					hatPlayer.use(hat);
+				}
 			}
+
 			return;
 		}
 
 		if (e.getSlotType() == SlotType.ARMOR) {
-			Hat hat = HatManager.getHat(itemStack);
+			Hat hat = HatManager.getHat(itemStack, hatPlayer);
 			if (hat != null) {
 				if (hatPlayer.isWearingHat()) {
 					e.setCancelled(true);
@@ -74,12 +84,10 @@ public class InventoryClick implements Listener {
 		}
 
 		if (e.getSlotType() == SlotType.QUICKBAR) {
-			if (!plugin.getConfig().getBoolean("can-move-hat-item")) {
-				if (e.getSlot() == plugin.getConfig().getInt("hat-item-slot") - 1) {
-					e.setCancelled(true);
-				}
-			}
+			if (player.getGameMode() != GameMode.CREATIVE)
+				if (!plugin.getConfig().getBoolean("can-move-hat-item"))
+					if (itemStack.equals(ItemStackUtil.getHatItem()))
+						e.setCancelled(true);
 		}
-
 	}
 }

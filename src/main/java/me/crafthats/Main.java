@@ -5,6 +5,9 @@ import me.crafthats.config.ConfigManager;
 import me.crafthats.listeners.*;
 import me.crafthats.hats.HatManager;
 import me.crafthats.hats.HatPlayerManager;
+import me.crafthats.utils.MessageManager;
+import me.crafthats.utils.Metrics;
+import me.crafthats.utils.Updater;
 import net.milkbowl.vault.economy.Economy;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
@@ -29,8 +32,7 @@ public class Main extends JavaPlugin {
 
 		if (getConfig().getBoolean("update-check") && !devBuild) {
 			if (getConfig().getBoolean("auto-update")) {
-				@SuppressWarnings("unused")
-				Updater updater = new Updater(this, 75524, this.getFile(), Updater.UpdateType.DEFAULT, true);
+				new Updater(this, 75524, this.getFile(), Updater.UpdateType.DEFAULT, true);
 			} else {
 				Updater updater = new Updater(this, 75524, this.getFile(), Updater.UpdateType.NO_DOWNLOAD, false);
 				Updater.UpdateResult result = updater.getResult();
@@ -54,6 +56,7 @@ public class Main extends JavaPlugin {
 		Bukkit.getPluginManager().registerEvents(new PlayerDamage(), this);
 		Bukkit.getPluginManager().registerEvents(new PlayerLeave(), this);
 		Bukkit.getPluginManager().registerEvents(new PlayerInteract(), this);
+		Bukkit.getPluginManager().registerEvents(new PlayerDropItem(), this);
 		new HatCommand("crafthats", "/<command>", "Main CraftHats command.", this, Arrays.asList("hats", "hat"));
 
 		if (!setupEconomy()) {

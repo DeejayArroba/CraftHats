@@ -1,7 +1,7 @@
 package me.crafthats.hats;
 
 import me.crafthats.Main;
-import me.crafthats.MessageManager;
+import me.crafthats.utils.MessageManager;
 import me.crafthats.config.ConfigManager;
 import net.milkbowl.vault.economy.Economy;
 import org.bukkit.Bukkit;
@@ -80,25 +80,25 @@ public class HatPlayer {
 		if (hat == null)
 			return;
 
-		if (hasHat(hat)) {
-			resetHat();
-			setPreviousHelmet();
-			wearingHat = true;
-			setCurrentHat(hat);
+		resetHat();
+		player.getInventory().setHelmet(previousHelmet);
+		setPreviousHelmet();
+		wearingHat = true;
+		setCurrentHat(hat);
 
-			ItemStack itemStack = hat.getItemStack(this);
-			ItemMeta itemMeta = itemStack.getItemMeta();
-			itemMeta.setLore(null);
-			itemStack.setItemMeta(itemMeta);
+		ItemStack itemStack = hat.getItemStack(this);
+		ItemMeta itemMeta = itemStack.getItemMeta();
+		itemMeta.setLore(null);
+		itemStack.setItemMeta(itemMeta);
 
-			player.getInventory().setHelmet(itemStack);
+		player.getInventory().setHelmet(itemStack);
 
-			player.closeInventory();
+		player.closeInventory();
 
-			msg.good(player, plugin.getConfig().getString("wear-hat-message"));
-			player.playSound(player.getLocation(), Sound.ITEM_PICKUP, 1f, 1f);
-			player.getLocation().getWorld().playEffect(player.getLocation(), Effect.MOBSPAWNER_FLAMES, 5);
-		}
+		msg.good(player, plugin.getConfig().getString("wear-hat-message"));
+		player.playSound(player.getLocation(), Sound.ITEM_PICKUP, 1f, 1f);
+		player.getLocation().getWorld().playEffect(player.getLocation(), Effect.MOBSPAWNER_FLAMES, 5);
+
 
 	}
 

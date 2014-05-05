@@ -41,13 +41,10 @@ public class HatManager {
 		ConfigManager.save(plugin, "hats.yml");
 	}
 
-	public static Hat getHat(ItemStack itemStack) {
-		Material hatMaterial = itemStack.getType();
-		String hatDisplayName = itemStack.getItemMeta().getDisplayName();
-
+	public static Hat getHat(ItemStack itemStack, HatPlayer hatPlayer) {
 		for (Hat hat : loadedHats) {
-			if (hat.getMaterial() == hatMaterial)
-				if (hat.getDisplayName().equals(hatDisplayName)) return hat;
+			if (hat.getItemStack(hatPlayer).equals(itemStack))
+				return hat;
 		}
 		return null;
 	}

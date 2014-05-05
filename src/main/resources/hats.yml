@@ -1,16 +1,86 @@
 hats:
    # The hat name
-   pumpkin:
+   tnt-hat:
       # The hat display name
-      display-name: Pumpkin hat
+      display-name: TNT hat
       # The hat price
-      price: 120
+      price: 0
       # The type of item that will appear in the menu
-      material: PUMPKIN
+      material: TNT
       # The data value for the item that will appear in the menu
       data-value: 0
-   redstone_block:
-      display-name: Redstone block hat
-      price: 100
+   redstone-hat:
+      display-name: Redstone hat
+      price: 0
       material: REDSTONE_BLOCK
-      dataValue: 0
+      data-value: 0
+   brick-hat:
+      display-name: Brick hat
+      price: 0
+      material: BRICK
+      data-value: 0
+   hay-hat:
+      display-name: Hay hat
+      price: 0
+      material: HAY_BLOCK
+      data-value: 0
+   stone-hat:
+      display-name: Stone hat
+      price: 0
+      material: STONE
+      data-value: 0
+   log-hat:
+      display-name: Oak log hat
+      price: 0
+      material: LOG
+      data-value: 0
+   podzol-hat:
+      display-name: Podzol hat
+      price: 0
+      material: DIRT
+      data-value: 2
+   grass-hat:
+      display-name: Grass hat
+      price: 0
+      material: GRASS
+      data-value: 0
+   glass-hat:
+      display-name: Glass hat
+      price: 0
+      material: GLASS
+      data-value: 0
+   wood-hat:
+      display-name: Wood hat
+      price: 0
+      material: WOOD
+      data-value: 0
+   iron-hat:
+      display-name: Iron hat
+      price: 0
+      material: IRON_BLOCK
+      data-value: 0
+   gold-hat:
+      display-name: Gold hat
+      price: 0
+      material: GOLD_BLOCK
+      data-value: 0
+   diamond-hat:
+      display-name: Diamond hat
+      price: 9001
+      material: DIAMOND_BLOCK
+      data-value: 0
+   lapis-hat:
+      display-name: Lapis hat
+      price: 0
+      material: LAPIS_BLOCK
+      data-value: 0
+   glowstone-hat:
+      display-name: Glowstone hat
+      price: 0
+      material: GLOWSTONE
+      data-value: 0
+   bookshelf-hat:
+      display-name: Bookshelf hat
+      price: 0
+      material: BOOKSHELF
+      data-value: 0

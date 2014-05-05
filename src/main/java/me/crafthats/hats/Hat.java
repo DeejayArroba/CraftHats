@@ -37,15 +37,18 @@ public class Hat {
 		List<String> lore = new ArrayList<String>();
 		boolean ownsHat = hatPlayer.getOwnedHats().contains(this.getName());
 
-		if (price <= 0)
-			lore.add(ChatColor.GRAY.toString() + ChatColor.ITALIC.toString() + "Price: FREE!");
-		else
-			lore.add(ChatColor.GRAY.toString() + ChatColor.ITALIC.toString() + "Price:" + price);
-
-		if (ownsHat)
-			lore.add(ChatColor.GREEN + "You own this hat.");
-		else
-			lore.add(ChatColor.RED + "You don't own this hat.");
+		if (price <= 0) {
+			//If the hat is free
+			lore.add(ChatColor.GREEN.toString() + ChatColor.ITALIC.toString() + "Price: FREE! " + ChatColor.GRAY + "(Click to use)");
+		} else {
+			//If the hat is not free
+			lore.add(ChatColor.GRAY.toString() + ChatColor.ITALIC.toString() + "Price: " + price);
+			if (ownsHat)
+				lore.add(ChatColor.GREEN + "You own this hat " + ChatColor.GRAY + "(Click to use)");
+			else {
+				lore.add(ChatColor.RED + "You don't own this hat " + ChatColor.GRAY + "(Click to buy)");
+			}
+		}
 
 		if (plugin.getConfig().getBoolean("per-hat-permissions"))
 			if (!hatPlayer.getPlayer().isOp())

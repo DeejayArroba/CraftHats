@@ -1,7 +1,7 @@
 package me.crafthats.commands;
 
-import me.crafthats.AbstractCommand;
-import me.crafthats.MessageManager;
+import me.crafthats.utils.AbstractCommand;
+import me.crafthats.utils.MessageManager;
 import me.crafthats.hats.HatManager;
 import me.crafthats.hats.HatPlayer;
 import me.crafthats.hats.HatPlayerManager;
