@@ -10,7 +10,7 @@ hats:
     price: 0
     material: REDSTONE_BLOCK
     data-value: 0
-    description: Magic wire!
+    description: Magic wire
   brick-hat:
     display-name: Brick hat
     price: 0
@@ -22,7 +22,7 @@ hats:
     price: 0
     material: HAY_BLOCK
     data-value: 0
-    description: ''
+    description: For horses
   stone-hat:
     display-name: Stone hat
     price: 0
@@ -82,13 +82,13 @@ hats:
     price: 0
     material: LAPIS_BLOCK
     data-value: 0
-    description: ''
+    description: So useless
   glowstone-hat:
     display-name: Glowstone hat
     price: 0
     material: GLOWSTONE
     data-value: 0
-    description: ''
+    description: So bright
   bookshelf-hat:
     display-name: Bookshelf hat
     price: 0
@@ -106,13 +106,13 @@ hats:
     price: 0
     material: PISTON_BASE
     data-value: 0
-    description: ''
+    description: Push things around
   sticky-piston-hat:
     display-name: Sticky Piston hat
     price: 0
     material: PISTON_STICKY_BASE
     data-value: 0
-    description: ''
+    description: Pull things around
   creeper-hat:
     display-name: Creeper hat
     price: 0
@@ -124,19 +124,19 @@ hats:
     price: 0
     material: ENDER_CHEST
     data-value: 0
-    description: ''
+    description: Cloud storage
   furnace-hat:
     display-name: Furnace hat
     price: 0
     material: FURNACE
     data-value: 0
-    description: ''
+    description: Portable barbecue
   chest-hat:
     display-name: Chest hat
     price: 0
     material: CHEST
     data-value: 0
-    description: ''
+    description: Store your goodies
   workbench-hat:
     display-name: Workbench hat
     price: 0
@@ -148,7 +148,7 @@ hats:
     price: 0
     material: LEAVES
     data-value: 0
-    description: ''
+    description: Booshes!
   jukebox-hat:
     display-name: Jukebox hat
     price: 0
@@ -160,19 +160,19 @@ hats:
     price: 0
     material: CACTUS
     data-value: 0
-    description: ''
+    description: Don't get pricked!
   cobweb-hat:
     display-name: Cobweb hat
     price: 0
     material: WEB
     data-value: 0
-    description: ''
+    description: Trololololololol
   emerald-hat:
     display-name: Emerald hat
     price: 0
     material: EMERALD_BLOCK
     data-value: 0
-    description: ''
+    description: M'yeah, see?
   cobblestone-hat:
     display-name: Cobblestone hat
     price: 0
@@ -268,4 +268,4 @@ hats:
     price: 0
     material: SOUL_SAND
     data-value: 0
-    description: ''
+    description: Slow sand
