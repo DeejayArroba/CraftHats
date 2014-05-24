@@ -1,7 +1,6 @@
 package me.crafthats.commands;
 
 import me.crafthats.config.ConfigManager;
-import me.crafthats.utils.AbstractCommand;
 import me.crafthats.utils.MessageManager;
 import me.crafthats.hats.HatManager;
 import me.crafthats.hats.HatPlayer;
@@ -13,9 +12,6 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.plugin.Plugin;
-import org.bukkit.plugin.java.JavaPlugin;
-
-import java.util.List;
 
 public class HatCommand implements CommandExecutor {
 	Plugin plugin = Bukkit.getPluginManager().getPlugin("CraftHats");
