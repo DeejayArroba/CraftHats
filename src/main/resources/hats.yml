@@ -1,86 +1,271 @@
 hats:
-   # The hat name
-   tnt-hat:
-      # The hat display name
-      display-name: TNT hat
-      # The hat price
-      price: 0
-      # The type of item that will appear in the menu
-      material: TNT
-      # The data value for the item that will appear in the menu
-      data-value: 0
-   redstone-hat:
-      display-name: Redstone hat
-      price: 0
-      material: REDSTONE_BLOCK
-      data-value: 0
-   brick-hat:
-      display-name: Brick hat
-      price: 0
-      material: BRICK
-      data-value: 0
-   hay-hat:
-      display-name: Hay hat
-      price: 0
-      material: HAY_BLOCK
-      data-value: 0
-   stone-hat:
-      display-name: Stone hat
-      price: 0
-      material: STONE
-      data-value: 0
-   log-hat:
-      display-name: Oak log hat
-      price: 0
-      material: LOG
-      data-value: 0
-   podzol-hat:
-      display-name: Podzol hat
-      price: 0
-      material: DIRT
-      data-value: 2
-   grass-hat:
-      display-name: Grass hat
-      price: 0
-      material: GRASS
-      data-value: 0
-   glass-hat:
-      display-name: Glass hat
-      price: 0
-      material: GLASS
-      data-value: 0
-   wood-hat:
-      display-name: Wood hat
-      price: 0
-      material: WOOD
-      data-value: 0
-   iron-hat:
-      display-name: Iron hat
-      price: 0
-      material: IRON_BLOCK
-      data-value: 0
-   gold-hat:
-      display-name: Gold hat
-      price: 0
-      material: GOLD_BLOCK
-      data-value: 0
-   diamond-hat:
-      display-name: Diamond hat
-      price: 9001
-      material: DIAMOND_BLOCK
-      data-value: 0
-   lapis-hat:
-      display-name: Lapis hat
-      price: 0
-      material: LAPIS_BLOCK
-      data-value: 0
-   glowstone-hat:
-      display-name: Glowstone hat
-      price: 0
-      material: GLOWSTONE
-      data-value: 0
-   bookshelf-hat:
-      display-name: Bookshelf hat
-      price: 0
-      material: BOOKSHELF
-      data-value: 0
+  tnt-hat:
+    display-name: TNT hat
+    price: 0
+    material: TNT
+    data-value: 0
+    description: Breach!
+  redstone-hat:
+    display-name: Redstone hat
+    price: 0
+    material: REDSTONE_BLOCK
+    data-value: 0
+    description: Magic wire!
+  brick-hat:
+    display-name: Brick hat
+    price: 0
+    material: BRICK
+    data-value: 0
+    description: A wall of bricks
+  hay-hat:
+    display-name: Hay hat
+    price: 0
+    material: HAY_BLOCK
+    data-value: 0
+    description: ''
+  stone-hat:
+    display-name: Stone hat
+    price: 0
+    material: STONE
+    data-value: 0
+    description: ''
+  log-hat:
+    display-name: Oak log hat
+    price: 0
+    material: LOG
+    data-value: 0
+    description: ''
+  podzol-hat:
+    display-name: Podzol hat
+    price: 0
+    material: DIRT
+    data-value: 2
+    description: ''
+  grass-hat:
+    display-name: Grass hat
+    price: 0
+    material: GRASS
+    data-value: 0
+    description: ''
+  glass-hat:
+    display-name: Glass hat
+    price: 0
+    material: GLASS
+    data-value: 0
+    description: I'm an astronaut!
+  wood-hat:
+    display-name: Wood hat
+    price: 0
+    material: WOOD
+    data-value: 0
+    description: ''
+  iron-hat:
+    display-name: Iron hat
+    price: 0
+    material: IRON_BLOCK
+    data-value: 0
+    description: Metal head
+  gold-hat:
+    display-name: Gold hat
+    price: 0
+    material: GOLD_BLOCK
+    data-value: 0
+    description: Shiny!
+  diamond-hat:
+    display-name: Diamond hat
+    price: 9001
+    material: DIAMOND_BLOCK
+    data-value: 0
+    description: Even more shiny!
+  lapis-hat:
+    display-name: Lapis hat
+    price: 0
+    material: LAPIS_BLOCK
+    data-value: 0
+    description: ''
+  glowstone-hat:
+    display-name: Glowstone hat
+    price: 0
+    material: GLOWSTONE
+    data-value: 0
+    description: ''
+  bookshelf-hat:
+    display-name: Bookshelf hat
+    price: 0
+    material: BOOKSHELF
+    data-value: 0
+    description: ''
+  sponge-hat:
+    display-name: Sponge hat
+    price: 0
+    material: SPONGE
+    data-value: 0
+    description: Square pants!
+  piston-hat:
+    display-name: Piston hat
+    price: 0
+    material: PISTON_BASE
+    data-value: 0
+    description: ''
+  sticky-piston-hat:
+    display-name: Sticky Piston hat
+    price: 0
+    material: PISTON_STICKY_BASE
+    data-value: 0
+    description: ''
+  creeper-hat:
+    display-name: Creeper hat
+    price: 0
+    material: SKULL_ITEM
+    data-value: 4
+    description: SSSsss...
+  enderchest-hat:
+    display-name: Ender chest hat
+    price: 0
+    material: ENDER_CHEST
+    data-value: 0
+    description: ''
+  furnace-hat:
+    display-name: Furnace hat
+    price: 0
+    material: FURNACE
+    data-value: 0
+    description: ''
+  chest-hat:
+    display-name: Chest hat
+    price: 0
+    material: CHEST
+    data-value: 0
+    description: ''
+  workbench-hat:
+    display-name: Workbench hat
+    price: 0
+    material: WORKBENCH
+    data-value: 0
+    description: ''
+  bush-hat:
+    display-name: Bush hat
+    price: 0
+    material: LEAVES
+    data-value: 0
+    description: ''
+  jukebox-hat:
+    display-name: Jukebox hat
+    price: 0
+    material: JUKEBOX
+    data-value: 0
+    description: ''
+  cactus-hat:
+    display-name: Cactus hat
+    price: 0
+    material: CACTUS
+    data-value: 0
+    description: ''
+  cobweb-hat:
+    display-name: Cobweb hat
+    price: 0
+    material: WEB
+    data-value: 0
+    description: ''
+  emerald-hat:
+    display-name: Emerald hat
+    price: 0
+    material: EMERALD_BLOCK
+    data-value: 0
+    description: ''
+  cobblestone-hat:
+    display-name: Cobblestone hat
+    price: 0
+    material: COBBLESTONE
+    data-value: 0
+    description: ''
+  mycelium-hat:
+    display-name: Mycelium hat
+    price: 0
+    material: MYCEL
+    data-value: 0
+    description: ''
+  dispenser-hat:
+    display-name: Dispenser hat
+    price: 0
+    material: DISPENSER
+    data-value: 0
+    description: ''
+  dropper-hat:
+    display-name: Dropper hat
+    price: 0
+    material: DROPPER
+    data-value: 0
+    description: ''
+  redstone-lamp-hat:
+    display-name: Redstone lamp hat
+    price: 0
+    material: REDSTONE_LAMP_OFF
+    data-value: 0
+    description: ''
+  sand-hat:
+    display-name: Sand hat
+    price: 0
+    material: SAND
+    data-value: 0
+    description: ''
+  obsidian-hat:
+    display-name: Obsidian hat
+    price: 0
+    material: OBSIDIAN
+    data-value: 0
+    description: ''
+  mossy-hat:
+    display-name: Mossy hat
+    price: 0
+    material: MOSSY_COBBLESTONE
+    data-value: 0
+    description: ''
+  quartz-hat:
+    display-name: Quartz hat
+    price: 0
+    material: QUARTZ_BLOCK
+    data-value: 1
+    description: ''
+  endstone-hat:
+    display-name: End stone hat
+    price: 0
+    material: ENDER_STONE
+    data-value: 0
+    description: ''
+  chiseled-hat:
+    display-name: Chiseled hat
+    price: 0
+    material: SMOOTH_BRICK
+    data-value: 3
+    description: ''
+  sandstone-hat:
+    display-name: Sandstone hat
+    price: 0
+    material: SANDSTONE
+    data-value: 0
+    description: ''
+  gravel-hat:
+    display-name: Gravel hat
+    price: 0
+    material: GRAVEL
+    data-value: 0
+    description: ''
+  melon-hat:
+    display-name: Melon hat
+    price: 0
+    material: MELON_BLOCK
+    data-value: 0
+    description: ''
+  jackolantern-hat:
+    display-name: Jack o' Lantern hat
+    price: 0
+    material: JACK_O_LANTERN
+    data-value: 0
+    description: ''
+  soulsand-hat:
+    display-name: Soul Sand hat
+    price: 0
+    material: SOUL_SAND
+    data-value: 0
+    description: ''

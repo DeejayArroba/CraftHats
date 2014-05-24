@@ -5,6 +5,7 @@ import me.crafthats.config.ConfigManager;
 import me.crafthats.listeners.*;
 import me.crafthats.hats.HatManager;
 import me.crafthats.hats.HatPlayerManager;
+import me.crafthats.utils.ItemStackUtil;
 import me.crafthats.utils.MessageManager;
 import me.crafthats.utils.Metrics;
 import me.crafthats.utils.Updater;
@@ -22,7 +23,8 @@ public class Main extends JavaPlugin {
 
 	public static Economy economy = null;
 	MessageManager msg;
-    public static boolean devBuild = true;
+	public static boolean devBuild = true;
+	public static boolean economyEnabled;
 
 	@Override
 	public void onEnable() {
@@ -51,24 +53,35 @@ public class Main extends JavaPlugin {
 			}
 		}
 
+		if (getConfig().getBoolean("economy"))
+			if (Bukkit.getPluginManager().getPlugin("Vault") != null) {
+				economyEnabled = true;
+				if (!setupEconomy()) {
+					Logger.getLogger("Minecraft").severe(
+							String.format("[%s] - Disabled due to no Economy plugin found!", getDescription().getName()));
+					getServer().getPluginManager().disablePlugin(this);
+					return;
+				}
+			} else {
+				economyEnabled = false;
+			}
+
 		Bukkit.getPluginManager().registerEvents(new InventoryClick(), this);
 		Bukkit.getPluginManager().registerEvents(new PlayerJoin(), this);
-		Bukkit.getPluginManager().registerEvents(new PlayerDamage(), this);
 		Bukkit.getPluginManager().registerEvents(new PlayerLeave(), this);
 		Bukkit.getPluginManager().registerEvents(new PlayerInteract(), this);
 		Bukkit.getPluginManager().registerEvents(new PlayerDropItem(), this);
-		new HatCommand("crafthats", "/<command>", "Main CraftHats command.", this, Arrays.asList("hats", "hat"));
+		Bukkit.getPluginManager().registerEvents(new PlayerDeath(), this);
 
-		if (!setupEconomy()) {
-			Logger.getLogger("Minecraft").severe(
-					String.format("[%s] - Disabled due to no Economy plugin found!", getDescription().getName()));
-			getServer().getPluginManager().disablePlugin(this);
-			return;
-		}
+		getCommand("crafthats").setExecutor(new HatCommand());
 
 		HatManager.loadHats();
 		HatPlayerManager.createAllHatPlayers();
 		msg = MessageManager.getInstance();
+
+		for(Player p : Bukkit.getOnlinePlayers()) {
+			ItemStackUtil.giveHatItem(p);
+		}
 	}
 
 	@Override
@@ -103,6 +116,10 @@ public class Main extends JavaPlugin {
 				}
 			}
 		}
+	}
+
+	public static boolean isEconomyEnabled() {
+		return economyEnabled;
 	}
 
 }

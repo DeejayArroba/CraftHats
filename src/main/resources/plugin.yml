@@ -2,7 +2,13 @@ name: CraftHats
 main: me.crafthats.Main
 version: 1.1
 description: Hat shop plugin for bukkit
-depend: [Vault]
+soft-depend: [Vault]
+commands:
+  crafthats:
+    usage: /<command> [reset/reload]
+    permission: crafthats.use
+    description: The main CraftHats command. It opens the hat menu.
+    aliases: [hats, hat]
 permissions:
   crafthats.admin:
     description: Gives access to all CraftHats features

@@ -72,7 +72,6 @@ public class HatPlayer {
 		}
 
 		return inventory;
-
 	}
 
 	public void use(Hat hat) {
@@ -96,6 +95,7 @@ public class HatPlayer {
 		player.closeInventory();
 
 		msg.good(player, plugin.getConfig().getString("wear-hat-message"));
+		msg.good(player, plugin.getConfig().getString("reset-hat-message"));
 		player.playSound(player.getLocation(), Sound.ITEM_PICKUP, 1f, 1f);
 		player.getLocation().getWorld().playEffect(player.getLocation(), Effect.MOBSPAWNER_FLAMES, 5);
 
@@ -130,8 +130,11 @@ public class HatPlayer {
 				msg.good(player, plugin.getConfig().getString("buy-hat-message"));
 				player.playSound(player.getLocation(), Sound.ORB_PICKUP, 1f, 1f);
 				player.getLocation().getWorld().playEffect(player.getLocation(), Effect.ENDER_SIGNAL, 5);
-			} else
+			} else {
 				msg.bad(player, plugin.getConfig().getString("cant-afford-hat-message"));
+				player.playSound(player.getLocation(), Sound.NOTE_BASS, 1f, 0.3f);
+				player.closeInventory();
+			}
 
 		} else
 			msg.info(player, plugin.getConfig().getString("already-own-hat-message"));

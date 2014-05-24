@@ -31,6 +31,22 @@ public class InventoryClick implements Listener {
 
 		HatPlayer hatPlayer = HatPlayerManager.getHatPlayer(player);
 
+		if (e.getSlotType() == SlotType.QUICKBAR) {
+			if (player.getGameMode() != GameMode.CREATIVE)
+				if (!plugin.getConfig().getBoolean("can-move-hat-item"))
+					if (itemStack.equals(ItemStackUtil.getHatItem())) {
+						e.setCancelled(true);
+						return;
+					}
+		}
+
+		if (e.getSlot() == 39)
+			if (hatPlayer.isWearingHat()) {
+				e.setCancelled(true);
+				msg.bad(player, plugin.getConfig().getString("reset-hat-message"));
+				return;
+			}
+
 		if (hatPlayer == null)
 			return;
 
@@ -71,23 +87,6 @@ public class InventoryClick implements Listener {
 			}
 
 			return;
-		}
-
-		if (e.getSlotType() == SlotType.ARMOR) {
-			Hat hat = HatManager.getHat(itemStack, hatPlayer);
-			if (hat != null) {
-				if (hatPlayer.isWearingHat()) {
-					e.setCancelled(true);
-					msg.bad(player, plugin.getConfig().getString("reset-hat-message"));
-				}
-			}
-		}
-
-		if (e.getSlotType() == SlotType.QUICKBAR) {
-			if (player.getGameMode() != GameMode.CREATIVE)
-				if (!plugin.getConfig().getBoolean("can-move-hat-item"))
-					if (itemStack.equals(ItemStackUtil.getHatItem()))
-						e.setCancelled(true);
 		}
 	}
 }

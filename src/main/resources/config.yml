@@ -15,15 +15,18 @@ per-hat-permissions: true
 
 metrics: true
 
+# If you want the hats to cost ingame money, set this to true (requires Vault and an economy plugin).
+economy: false
+
 # An item that players use to open the hat menu.
-hat-item: DIAMOND_HELMET
+hat-item: GLOWSTONE
 
 # The hot-bar slot that the hat item will appear [1-9].
 hat-item-slot: 9
 
 hat-item-data-value: 0
 
-hat-item-name: "&cHat selector"
+hat-item-name: "&c&lHat selector"
 
 # If you want players to be able to move the hat item in their inventory, set this to true
 # The players will still be able to move the item if they are on creative mode.

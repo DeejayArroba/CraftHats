@@ -22,7 +22,6 @@ public class PlayerInteract implements Listener {
 			Inventory inventory = HatPlayerManager.getHatPlayer(player).getInventory();
 			player.openInventory(inventory);
 		}
-
 	}
 
 }

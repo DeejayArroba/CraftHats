@@ -3,6 +3,7 @@ package me.crafthats.utils;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
+import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.plugin.Plugin;
@@ -33,6 +34,13 @@ public class ItemStackUtil {
 		lore.add(ChatColor.GRAY.toString() + ChatColor.ITALIC.toString() + loreString);
 		resetItem.setItemMeta(resetItemMeta);
 		return resetItem;
+	}
+
+	public static void giveHatItem(Player p) {
+		Plugin plugin = Bukkit.getPluginManager().getPlugin("CraftHats");
+		if (plugin.getConfig().getBoolean("give-hat-item")) {
+			p.getInventory().setItem(plugin.getConfig().getInt("hat-item-slot") - 1, getHatItem());
+		}
 	}
 
 }

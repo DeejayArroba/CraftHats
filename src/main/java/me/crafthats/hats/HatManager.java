@@ -1,5 +1,6 @@
 package me.crafthats.hats;
 
+import me.crafthats.Main;
 import me.crafthats.config.ConfigManager;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
@@ -27,15 +28,15 @@ public class HatManager {
 					config.set("hats." + name + ".data-value", config.get("hats." + name + ".dataValue"));
 					config.set("hats." + name + ".dataValue", null);
 				}
-				double price = config.getDouble("hats." + name + ".price");
+				double price = Main.isEconomyEnabled() ? config.getDouble("hats." + name + ".price") : 0;
 				Material material = Material.getMaterial(config.getString("hats." + name + ".material"));
 				String displayName = config.getString("hats." + name + ".display-name");
 				short dataValue = (short) config.getInt("hats." + name + ".data-value");
+				String description = config.getString("hats." + name + ".description");
 
-				if (material.isBlock()) {
-					Hat hat = new Hat(name, displayName, price, material, dataValue);
-					loadedHats.add(hat);
-				}
+				Hat hat = new Hat(name, displayName, price, material, dataValue, description);
+				loadedHats.add(hat);
+
 			}
 		}
 		ConfigManager.save(plugin, "hats.yml");

@@ -15,18 +15,18 @@ public class Hat {
 	private Material material;
 	private String name;
 	private String displayName;
+	private String description;
 	private double price;
 	private short dataValue;
 	Plugin plugin = Bukkit.getPluginManager().getPlugin("CraftHats");
 
-	public Hat(String name, String displayName, double price, Material material, short dataValue) {
-
+	public Hat(String name, String displayName, double price, Material material, short dataValue, String description) {
 		this.name = name;
 		this.displayName = displayName;
 		this.price = price;
 		this.material = material;
 		this.dataValue = dataValue;
-
+		this.description = description;
 	}
 
 	public ItemStack getItemStack(HatPlayer hatPlayer) {
@@ -37,11 +37,12 @@ public class Hat {
 		List<String> lore = new ArrayList<String>();
 		boolean ownsHat = hatPlayer.getOwnedHats().contains(this.getName());
 
+		if(!description.equals(""))
+			lore.add(ChatColor.GOLD + description);
+
 		if (price <= 0) {
-			//If the hat is free
 			lore.add(ChatColor.GREEN.toString() + ChatColor.ITALIC.toString() + "Price: FREE! " + ChatColor.GRAY + "(Click to use)");
 		} else {
-			//If the hat is not free
 			lore.add(ChatColor.GRAY.toString() + ChatColor.ITALIC.toString() + "Price: " + price);
 			if (ownsHat)
 				lore.add(ChatColor.GREEN + "You own this hat " + ChatColor.GRAY + "(Click to use)");
@@ -65,7 +66,7 @@ public class Hat {
 	}
 
 	public String getDisplayName() {
-		return ChatColor.AQUA + displayName;
+		return  ChatColor.AQUA + "" +ChatColor.BOLD + displayName;
 	}
 
 	public double getPrice() {

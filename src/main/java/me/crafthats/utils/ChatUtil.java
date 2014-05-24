@@ -20,6 +20,13 @@ public class ChatUtil {
 		newString = newString.replace("&d", "§d");
 		newString = newString.replace("&e", "§e");
 		newString = newString.replace("&f", "§f");
+
+		newString = newString.replace("&l", "§l");
+		newString = newString.replace("&m", "§m");
+		newString = newString.replace("&r", "§r");
+		newString = newString.replace("&k", "§k");
+		newString = newString.replace("&o", "§o");
+		newString = newString.replace("&n", "§n");
 		return newString;
 	}
 
